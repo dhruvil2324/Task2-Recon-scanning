@@ -33,6 +33,8 @@
 
 ### 1.4 Shodan Result
 - Query: `port:21 ftp`
+
+![Shodan Search](Images/shodan.png)
 - Total exposed devices: 2,050,971
 - Top countries: China, United States, Japan, Germany, Brazil
 - Risk: Millions of FTP services exposed on internet
@@ -47,31 +49,7 @@
       sudo nmap -sS 192.168.56.101
 - Total open ports found: 23
 
-| Port | State | Service |
-|---|---|---|
-| 21/tcp | open | ftp |
-| 22/tcp | open | ssh |
-| 23/tcp | open | telnet |
-| 25/tcp | open | smtp |
-| 53/tcp | open | domain |
-| 80/tcp | open | http |
-| 111/tcp | open | rpcbind |
-| 139/tcp | open | netbios-ssn |
-| 445/tcp | open | microsoft-ds |
-| 512/tcp | open | exec |
-| 513/tcp | open | login |
-| 514/tcp | open | shell |
-| 1099/tcp | open | rmiregistry |
-| 1524/tcp | open | ingreslock |
-| 2049/tcp | open | nfs |
-| 2121/tcp | open | ccproxy-ftp |
-| 3306/tcp | open | mysql |
-| 5432/tcp | open | postgresql |
-| 5900/tcp | open | vnc |
-| 6000/tcp | open | X11 |
-| 6667/tcp | open | irc |
-| 8009/tcp | open | ajp13 |
-| 8180/tcp | open | unknown |
+![Nmap Scan](Images/nmap_tcp.png)
 
 ### 2.2 Service Version Detection
 - Command:
@@ -118,8 +96,11 @@
 
 ## 3. Packet Analysis Results
 
-### 3.1 DNS Traffic
-- Filter used: `dns`
+### DNS Traffic
+
+Filter used: `dns`
+
+![DNS Capture](Images/dns_capture.png)
 - Source IP: 10.0.2.15
 - DNS Server: 10.0.2.3
 - Domains resolved: google.com, aitindia.in
@@ -127,6 +108,7 @@
 
 ### 3.2 HTTP Traffic
 - Filter used: `http`
+![HTTP Capture](Images/http_capture.png)
 - Finding: HTTP GET requests visible in plaintext
 - Finding: 200 OK and 301 redirect responses captured
 - Risk: Unencrypted traffic exposes user activity
@@ -157,12 +139,16 @@
 
       nmap 192.168.56.101
 
+![Firewall Rule](Images/firewall_before_rule.png)
+
 - Port 80 status: **OPEN**
 
 ### 4.3 Nmap After Firewall
 - Command:
 
       nmap 192.168.56.101
+
+![Firewall Rule](Images/firewall_rule.png)
 - Port 80 status: **FILTERED**
 - Result: Firewall successfully blocked port 80 ✅
 
